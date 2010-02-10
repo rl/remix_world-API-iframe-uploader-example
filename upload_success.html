@@ -1,0 +1,10 @@
+<h4 style="margin:0;padding:0">File uploaded! <a href="http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html">Upload a different file</a></h4>
+
+<script type="text/javascript">
+  var video_file_id = document.location.href.match(/video_file_id=([^&]+)/);
+  if(video_file_id){
+    parent.document.getElementById('error_message').innerHTML = '';
+    parent.document.getElementById('video_file_id').value = video_file_id[1];
+    parent.document.getElementById('create_button').disabled = false;
+  }
+</script>

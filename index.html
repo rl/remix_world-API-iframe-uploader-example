@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>RemixWorld 3rd-party Uploader</title>
+  </head>
+  <body>
+    <h1>Upload a video to RemixWorld:</h1>
+
+    <code><pre>
+>> iframe_url = "http://video.iremix.org/upload_form"
+ => "http://video.iremix.org/upload_form"
+>> success_url = "http://app.example.com/upload_success.html"
+ => "http://app.example.com/upload_success.html"
+>> error_url = "http://app.example.com/upload_error.html"
+ => "http://app.example.com/upload_error.html"
+>> iframe_url = iframe_url + "?success_url=" + CGI.escape(success_url) + "&amp;error_url=" + CGI.escape(error_url)
+ => "http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html"
+    </pre></code>
+
+    Upload File to video.iremix.org:
+    <iframe src="http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html" style="height:2em; width:100%; border:0"></iframe>
+
+    <div id="error_message" style="color:red"></div>
+    <form id="video_form" action="/create_video.html">
+      <label>Uploaded File ID [hidden]: <input id="video_file_id" type="text" disabled="true" name="video[video_file_id]" style="width:23em" /><br />
+      <label>Title: <input type="text" name="video[title]" /></label><br />
+      <label>Description: <input name="video[title]" /></label><br />
+      <label>Tags: <input type="text" name="video[tags]" /></label><br />
+      <input id="create_button" type="submit" value="Create Video" disabled="true" />
+    </form>
+
+    <br />
+    <hr />
+    <p><a href="/api.textile">RemixWorld Video Upload API</a></p>
+  </body>
+</html>
