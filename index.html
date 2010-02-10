@@ -1,6 +1,11 @@
 <html>
   <head>
     <title>RemixWorld 3rd-party Uploader</title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" charset="utf-8">
+      google.load("jquery", "1.4.1");
+    </script>
+    <script type="text/javascript" src="jquery.form.js"></script>
   </head>
   <body>
     <h1>Upload a video to RemixWorld:</h1>
@@ -20,12 +25,12 @@
     <iframe src="http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html" style="height:2em; width:100%; border:0"></iframe>
 
     <div id="error_message" style="color:red"></div>
-    <form id="video_form" action="/create_video.html">
-      <label>Uploaded File ID [hidden]: <input id="video_file_id" type="text" disabled="true" name="video[video_file_id]" style="width:23em" /><br />
+    <form id="video_form" action="http://dp.iremix.org/api/v1/videos.json" method="POST" target="new_window">
+      <label>Uploaded File ID [hidden]: <input id="video_file_id" type="text" name="video[video_file_id]" style="width:23em" /><br />
       <label>Title: <input type="text" name="video[title]" /></label><br />
-      <label>Description: <input name="video[title]" /></label><br />
-      <label>Tags: <input type="text" name="video[tags]" /></label><br />
-      <input id="create_button" type="submit" value="Create Video" disabled="true" />
+      <label>Description: <input name="video[description]" /></label><br />
+      <label>Tags: <input type="text" name="video[tag_list]" /></label><br />
+      <input id="create_button" type="submit" value="Create Video" />
     </form>
 
     <br />
