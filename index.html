@@ -17,23 +17,29 @@
  => "http://app.example.com/upload_success.html"
 >> error_url = "http://app.example.com/upload_error.html"
  => "http://app.example.com/upload_error.html"
->> iframe_url = iframe_url + "?success_url=" + CGI.escape(success_url) + "&amp;error_url=" + CGI.escape(error_url)
- => "http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html"
+>> cancel_url = "http://app.example.com/upload_canceled.html"
+ => "http://app.example.com/upload_canceled.html"
+>>  uploading_iframe_url = "http://app.example.com/video_uploading.html"
+ => "http://app.example.com/video_uploading.html"
+>> iframe_url = iframe_url + "?success_url=" + CGI.escape(success_url) + "&amp;error_url=" + CGI.escape(error_url) + "&amp;cancel_url=" + CGI.escape(cancel_url) + "&amp;uploading_iframe_url=" + CGI.escape(uploading_iframe_url)
+ => "http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html&amp;cancel_url=http%3A%2F%2Fapp.example.com%2Fupload_canceled.html&amp;uploading_iframe_url=http%3A%2F%2Fapp.example.com%2Fvideo_uploading.html"
+
     </pre></code>
 
     Upload File to video.iremix.org:
-    <iframe src="http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html" style="height:2em; width:100%; border:0"></iframe>
+    <iframe src="http://video.iremix.org/upload_form?success_url=http%3A%2F%2Fapp.example.com%2Fupload_success.html&amp;error_url=http%3A%2F%2Fapp.example.com%2Fupload_error.html&amp;cancel_url=http%3A%2F%2Fapp.example.com%2Fupload_canceled.html&amp;uploading_iframe_url=http%3A%2F%2Fapp.example.com%2Fvideo_uploading.html" style="height:2em; width:100%; border:0"></iframe>
 
     <div id="error_message" style="color:red"></div>
-    <form id="video_form" action="http://dp.iremix.org/api/v1/videos.json" method="POST" target="new_window">
-      <label>Uploaded File ID [hidden]: <input id="video_file_id" type="text" name="video[video_file_id]" style="width:23em" /><br />
+    <form id="video_form" action="http://dp.iremix.org/api/v1/videos.json" method="POST" target="remix_window">
+      <label>Uploaded File ID [hidden]: <input id="video_file_id" type="text" name="video[video_file_id]" style="width:23em" /></label><br />
       <label>Title: <input type="text" name="video[title]" /></label><br />
       <label>Description: <input name="video[description]" /></label><br />
       <label>Tags: <input type="text" name="video[tag_list]" /></label><br />
-      <input id="create_button" type="submit" value="Create Video" />
+      <input id="create_button" type="submit" value="Create Video" disabled="true" />
     </form>
 
     <br />
+    <iframe src="" style="display:none" name="remix_window"></iframe>
     <hr />
     <p><a href="/api.textile">RemixWorld Video Upload API</a></p>
   </body>
