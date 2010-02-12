@@ -1,10 +1,22 @@
-<h4>Upload error! <a href="http://video.staging.iremix.org/upload_form?success_url=http%3A%2F%2Flocalhost:8000%2Fupload_success.html&amp;error_url=http%3A%2F%2Flocalhost:8000%2Fupload_error.html">Try again</a></h4>
+<html>
+  <head>
+    <style>
+      body {
+        background-color:#ccf;
+        border:1px solid #66c;
+      }
+    </style>
 
-<script type="text/javascript">
-  var error_message = document.location.href.match(/error_message=([^&]+)/);
-  if(error_message){
-    parent.document.getElementById('error_message').innerHTML = unescape(error_message[1]).replace(/\+/g,' ');
-    parent.document.getElementById('video_file_id').value = '';
-    parent.document.getElementById('create_button').disabled = true;
-  }
-</script>
+    <script type="text/javascript">
+      var error_message = document.location.href.match(/error_message=([^&]+)/);
+      if(error_message){
+        parent.document.getElementById('error_message').innerHTML = unescape(error_message[1]).replace(/\+/g,' ');
+        parent.document.getElementById('video_file_id').value = '';
+        parent.document.getElementById('create_button').disabled = true;
+      }
+    </script>
+  </head>
+  <body>
+    <h4>Upload error! <a href="http://video.staging.iremix.org/upload_form?success_url=http%3A%2F%2Flocalhost:8000%2Fupload_success.html&amp;error_url=http%3A%2F%2Flocalhost:8000%2Fupload_error.html">Try again</a></h4>
+  </body>
+</html>

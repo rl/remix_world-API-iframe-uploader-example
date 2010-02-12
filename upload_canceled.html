@@ -1,5 +1,19 @@
-<script type="text/javascript">
-  var return_url = document.location.href.match(/^[^\?]+\?(.+)$/)[1];
-  parent.document.getElementById('create_button').disabled = true;
-  document.location = return_url;
-</script>
+<html>
+  <head>
+    <style>
+      body {
+        background-color:#ccf;
+        border:1px solid #66c;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var return_url = document.location.href.match(/^[^\?]+\?(.+)$/)[1];
+      parent.document.getElementById('create_button').disabled = true;
+      alert('Redirecting back to video upload form...');
+      document.location = return_url;
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -2,7 +2,16 @@
 
 This example is set up to run from any HTTP file server running on port 8000. If you already have a webserver on your machine, it may be easiest to simply drop all of these files into the public folder of this webserver. If you don't, you can install "httphere", a mini http server that simply serves static files from a directory:
 
-    sudo gem install httphere
+    sudo gem install -r httphere shared-mime-info
+
+You may need to install shared-mime-info via ports as well:
+
+    sudo port install -b shared-mime-info
+
+If you don't already have this repo on your system, [download it](http://github.com/dyn/remix_world-API-iframe-uploader-example/zipball/master) or git clone it:
+
+    git clone git://github.com/dyn/remix_world-API-iframe-uploader-example.git remix_uploader
+    cd remix_uploader
 
 To run httphere on port 8000, chdir to this directory and run:
 
