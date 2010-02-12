@@ -19,10 +19,11 @@
       iframe_url = iframe_url + "?success_url=" + CGI.escape(success_url) + "&amp;error_url=" + CGI.escape(error_url) + "&amp;cancel_url=" + CGI.escape(cancel_url) + "&amp;uploading_iframe_url=" + CGI.escape(uploading_iframe_url)
        => "http://video.staging.iremix.org/upload_form?success_url=http%3A%2F%2Flocalhost:8000%2Fupload_success.html&amp;error_url=http%3A%2F%2Flocalhost:8000%2Fupload_error.html&amp;cancel_url=http%3A%2F%2Flocalhost:8000%2Fupload_canceled.html&amp;uploading_iframe_url=http%3A%2F%2Flocalhost:8000%2Fvideo_uploading.html"
     -->
-    <iframe style="background-color:#cfc;height:2em;border:1px solid #6c6;padding:0" src="http://video.staging.iremix.org/upload_form?success_url=http%3A%2F%2Flocalhost:8000%2Fupload_success.html&amp;error_url=http%3A%2F%2Flocalhost:8000%2Fupload_error.html&amp;cancel_url=http%3A%2F%2Flocalhost:8000%2Fupload_canceled.html&amp;uploading_iframe_url=http%3A%2F%2Flocalhost:8000%2Fvideo_uploading.html" style="height:2em; width:100%; border:0"></iframe>
+    <iframe src="http://video.staging.iremix.org/upload_form?success_url=http%3A%2F%2Flocalhost:8000%2Fupload_success.html&amp;error_url=http%3A%2F%2Flocalhost:8000%2Fupload_error.html&amp;cancel_url=http%3A%2F%2Flocalhost:8000%2Fupload_canceled.html&amp;uploading_iframe_url=http%3A%2F%2Flocalhost:8000%2Fvideo_uploading.html" style="background-color:#cfc;height:2em;width:50%;border:1px solid #6c6;padding:0;height:2em;width:100%; border:0"></iframe>
 
     <div id="error_message" style="color:red"></div>
-    <form id="video_form" action="http://rw.staging.iremix.org/api/v1/videos.json" method="POST" target="remix_window">
+
+    <form id="video_form" action="http://rw.staging.iremix.org/api/v1/videos.json" method="POST">
       <label>Uploaded File ID: <input id="video_file_id" type="text" name="video[video_file_id]" style="width:23em" /> (normally this would be hidden)</label><br />
       <label>Title: <input type="text" name="video[title]" /></label><br />
       <label>Description: <input name="video[description]" /></label><br />
@@ -31,7 +32,6 @@
     </form>
 
     <br />
-    <iframe src="" style="width:25px;height:25px;background-color:#ccf;border:1px solid #66c" name="remix_window"></iframe>
     <hr />
     <p><a href="/api.textile">RemixWorld Video Upload API</a></p>
   </body>
