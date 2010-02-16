@@ -2,20 +2,24 @@
   <head>
     <title>RemixWorld 3rd-party Uploader</title>
 
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.3.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-    <script type="text/javascript" src="http://video.remix.local/javascripts/cross-frame.js"></script>
+    <!-- <script type="text/javascript" src="http://yui.yahooapis.com/2.3.1/build/yahoo-dom-event/yahoo-dom-event.js"></script> -->
+    <!-- <script type="text/javascript" src="http://video.remix.local/javascripts/cross-frame.js"></script> -->
+    <script type="text/javascript" src="http://video.remix.local/javascripts/jquery.js"></script> 
+    <script type="text/javascript" src="http://video.remix.local/javascripts/jquery.ba-postmessage.js"></script> 
     <script type="text/javascript" src="http://video.remix.local/javascripts/videoupload.js"></script>
     
-    <script src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("jquery", "1.4.1");
-      google.setOnLoadCallback(function() {
+      $(document).ready(function(){
         var action = $("form#video_upload_form").attr("action");
         $("form#video_upload_form").submit(function(e){
           Remix.Video.upload({
             form: this, 
             respondToDestination: "http://localhost:8001/proxy.html",
             respondToTarget: "top",
+            start: function(data){
+              console.log("starting");
+              console.log(data);
+            },
             progress: function(data){
               console.log("progress");
               console.log(data);
@@ -24,17 +28,14 @@
               console.log("error");
               console.log(data);
             },
-            start: function(data){
-              console.log("starting");
-              console.log(data);
-            },
             success: function(data){
               console.log("success");
               console.log(data);
             }
           });
+          return true;
         });
-      });
+      })
     </script>
   </head>
   <body>
@@ -51,13 +52,14 @@
 
     <p>Progress Bar</p>
     
-    <iframe name="rw_video_upload"></iframe>
-    <iframe id="rw_progress" name="rw_progress" src="http://video.remix.local/track_upload_progress.html"></iframe>
+    <iframe id="rw_progress" name="rw_progress" src="http://video.remix.local/track_upload_progress.html?_=12422242312439"></iframe>
     
     <h2>Video Upload Form</h2>
     <div id="error_message" style="color:red"></div>
     
     <form id="video_upload_form" action="http://video.remix.local/api/videos" target="rw_video_upload" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="destination"/>
+      <input type="hidden" name="target"/>
       <input type="file" name="file" />
       <input type="submit" />
     </form>
