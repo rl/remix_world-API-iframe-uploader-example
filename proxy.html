@@ -4,53 +4,46 @@
   <body>
     <script type="text/javascript">
       (function () {
-          var r, o, t;
+        var r, o, t;
 
-          // This function is copied from yahoo.js.
-          // This keeps this file free of dependencies.
-          function hasOwnProperty(o, prop) {
-              if (Object.prototype.hasOwnProperty) {
-                  return o.hasOwnProperty(prop);
-              }
+        // This function is copied from yahoo.js.
+        // This keeps this file free of dependencies.
+        function hasOwnProperty(o, prop) {
+          if (Object.prototype.hasOwnProperty) { return o.hasOwnProperty(prop); }
+          return typeof o[prop] !== "undefined" && o.constructor.prototype[prop] !== o[prop];
+        }
 
-              return typeof o[prop] !== "undefined" &&
-                      o.constructor.prototype[prop] !== o[prop];
-          }
+        function parseQueryString(s) {
+          var r, a, p;
+          r = {};
+          a = s.split('&');
+          for (i = 0; i < a.length; i++) {
+              p = a[i].split('=');
+              if (p.length === 2 && p[0].length > 0) {
+                  r[p[0]] = unescape(p[1]); } }
+          return r;
+        }
 
-          function parseQueryString(s) {
-              var r, a, p;
+        // Match things like parent.frames["aaa"].top.frames[0].frames['bbb']
+        r = /^(?:(?:(top|parent|frames\[(?:(?:['"][a-zA-Z\d-_]*['"])|\d+)\]))(?:\.|$))+/;
 
-              r = {};
-              a = s.split('&');
-              for (i = 0; i < a.length; i++) {
-                  p = a[i].split('=');
-                  if (p.length === 2 && p[0].length > 0) {
-                      r[p[0]] = unescape(p[1]);
-                  }
-              }
-              return r;
-          }
+        o = parseQueryString(location.hash.substr(1));
 
-          // Match things like parent.frames["aaa"].top.frames[0].frames['bbb']
-          r = /^(?:(?:(top|parent|frames\[(?:(?:['"][a-zA-Z\d-_]*['"])|\d+)\]))(?:\.|$))+/;
+        // The following properties may be missing as a result of preloading
+        // this file for example. Simply do nothing in that case...
+        if (hasOwnProperty(o, "target") && hasOwnProperty(o, "message") && hasOwnProperty(o, "domain") && hasOwnProperty(o, "uri")) {
+            if (!r.test(o.target)) { throw new Error("Invalid target: " + o.target); }
 
-          o = parseQueryString(location.hash.substr(1));
+            // Safe to eval...
+            t = eval("parent." + o.target);
 
-          // The following properties may be missing as a result of preloading
-          // this file for example. Simply do nothing in that case...
-          if (hasOwnProperty(o, "target") && hasOwnProperty(o, "message") &&
-              hasOwnProperty(o, "domain") && hasOwnProperty(o, "uri")) {
-
-              if (!r.test(o.target)) {
-                  throw new Error("Invalid target: " + o.target);
-              }
-
-              // Safe to eval...
-              t = eval("parent." + o.target);
-
-              // Let the application know a message has been received.
-              t.YAHOO.util.CrossFrame.onMessageEvent.fire(o.message, o.domain, o.uri);
-          }
+            // Let the application know a message has been received.
+            t.jQuery(t).trigger("onmessage", { 
+              data: o.message,
+              domain: o.domain,
+              uri: o.uri
+            });
+        }
       })();
 
     </script>
