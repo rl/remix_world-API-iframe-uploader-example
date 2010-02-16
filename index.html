@@ -3,10 +3,10 @@
     <title>RemixWorld 3rd-party Uploader</title>
 
     <!-- <script type="text/javascript" src="http://yui.yahooapis.com/2.3.1/build/yahoo-dom-event/yahoo-dom-event.js"></script> -->
-    <!-- <script type="text/javascript" src="http://video.remix.local/javascripts/cross-frame.js"></script> -->
-    <script type="text/javascript" src="http://video.remix.local/javascripts/jquery.js"></script> 
-    <script type="text/javascript" src="http://video.remix.local/javascripts/jquery.ba-postmessage.js"></script> 
-    <script type="text/javascript" src="http://video.remix.local/javascripts/videoupload.js"></script>
+    <!-- <script type="text/javascript" src="http://video.staging.iremix.org/javascripts/cross-frame.js"></script> -->
+    <script type="text/javascript" src="http://video.staging.iremix.org/javascripts/jquery.js"></script> 
+    <script type="text/javascript" src="http://video.staging.iremix.org/javascripts/jquery.ba-postmessage.js"></script> 
+    <script type="text/javascript" src="http://video.staging.iremix.org/javascripts/videoupload.js"></script>
     
     <script type="text/javascript">
       $(document).ready(function(){
@@ -14,6 +14,7 @@
         $("form#video_upload_form").submit(function(e){
           Remix.Video.upload({
             form: this, 
+            destination: "http://video.staging.iremix.org/proxy.html",
             respondToDestination: "http://localhost:8001/proxy.html",
             respondToTarget: "top",
             start: function(data){
@@ -43,7 +44,7 @@
 
     <p style="color:red">To get this running, see <a href="INSTALL.markdown">Setup Instructions</a></p>
 
-    Upload a file to video.remix.local:<br />
+    Upload a file to video.staging.iremix.org:<br />
 
     <div style="float:left">
       <p>RW Video Upload</p>
@@ -52,12 +53,12 @@
 
     <p>Progress Bar</p>
     
-    <iframe id="rw_progress" name="rw_progress" src="http://video.remix.local/track_upload_progress.html?_=12422242312439"></iframe>
+    <iframe id="rw_progress" name="rw_progress" src="http://video.staging.iremix.org/track_upload_progress.html?_=12422242312439"></iframe>
     
     <h2>Video Upload Form</h2>
     <div id="error_message" style="color:red"></div>
     
-    <form id="video_upload_form" action="http://video.remix.local/api/videos" target="rw_video_upload" method="POST" enctype="multipart/form-data">
+    <form id="video_upload_form" action="http://video.staging.iremix.org/api/videos" target="rw_video_upload" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="destination"/>
       <input type="hidden" name="target"/>
       <input type="file" name="file" />
