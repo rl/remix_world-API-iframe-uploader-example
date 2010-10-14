@@ -8,9 +8,9 @@ You may need to install shared-mime-info via ports as well:
 
     sudo port install -b shared-mime-info
 
-If you don't already have this repo on your system, [download it](http://github.com/dyn/remix_world-API-iframe-uploader-example/zipball/master) or git clone it:
+If you don't already have this repo on your system, [download it](http://github.com/rl/remix_world-API-iframe-uploader-example/zipball/master) or git clone it:
 
-    git clone git://github.com/dyn/remix_world-API-iframe-uploader-example.git remix_uploader
+    git clone git://github.com/rl/remix_world-API-iframe-uploader-example.git remix_uploader
     cd remix_uploader
 
 To run httphere on port 8000, chdir to this directory and run:
